@@ -31,5 +31,7 @@
         <env name="QUEUE_CONNECTION" value="sync"/>
         <env name="SESSION_DRIVER" value="array"/>
         <env name="TELESCOPE_ENABLED" value="false"/>
+        <env name="CHARACTER_API_SERVICE_BASE_URL" value="https://test.local/api/character/"/>
+        
     </php>
 </phpunit>

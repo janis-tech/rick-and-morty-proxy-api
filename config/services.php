@@ -35,4 +35,8 @@ return [
         ],
     ],
 
+    'character_api_service' => [
+        'base_url' => env('CHARACTER_API_SERVICE_BASE_URL'),
+    ],
+
 ];

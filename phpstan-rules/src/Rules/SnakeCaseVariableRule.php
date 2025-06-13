@@ -2,7 +2,6 @@
 
 namespace App\PHPStan\Rules;
 
-use Log;
 use PhpParser\Node;
 use PhpParser\Node\Expr\Variable;
 use PHPStan\Analyser\Scope;
@@ -22,8 +21,6 @@ class SnakeCaseVariableRule implements Rule
     public function processNode(Node $node, Scope $scope): array
     {
         if (! $node->name instanceof Node && is_string($node->name)) {
-
-            Log::debug('Processing variable: '.$node->name);
 
             // Skip special variables like $this
             if (in_array($node->name, ['this', '_'], true)) {

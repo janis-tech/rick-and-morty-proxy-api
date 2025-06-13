@@ -10,7 +10,22 @@ use Illuminate\Support\Facades\Http;
 
 class RickAndMortyApiService implements CharacterApiServiceInterface
 {
-    protected string $baseUrl = 'https://rickandmortyapi.com/api/character/';
+    protected string $base_url;
+
+    public function __construct()
+    {
+
+        $base_url = config('services.character_api_service.base_url', '');
+        if (! is_string($base_url) || strlen($base_url) === 0) {
+            throw new \InvalidArgumentException('Base URL for Character API Service is not set in configuration.');
+        }
+
+        $this->base_url = $base_url;
+
+        if (empty($this->base_url)) {
+            throw new \InvalidArgumentException('Base URL for Character API Service is not set in configuration.');
+        }
+    }
 
     /**
      * Get all characters.
@@ -24,7 +39,7 @@ class RickAndMortyApiService implements CharacterApiServiceInterface
             $filters['page'] = $page;
         }
 
-        $response_data = $this->makeRequest($this->baseUrl, $filters);
+        $response_data = $this->makeRequest($this->base_url, $filters);
 
         $characters = [];
         $pagination = null;
@@ -51,7 +66,7 @@ class RickAndMortyApiService implements CharacterApiServiceInterface
      */
     public function getCharacterById(int $id): ?CharacterDTO
     {
-        $url = $this->baseUrl.$id;
+        $url = $this->base_url.$id;
 
         try {
             $character_data = $this->makeRequest($url, null);
