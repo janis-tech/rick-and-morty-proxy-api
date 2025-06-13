@@ -1,0 +1,28 @@
+includes:
+    - vendor/larastan/larastan/extension.neon
+
+parameters:
+    paths:
+        - app/
+        - database/
+        - tests/
+        - routes/
+
+    # Level 10 is the highest level
+    level: 10
+    
+    bootstrapFiles:
+        - vendor/autoload.php
+    
+    scanDirectories:
+        - phpstan-rules/src
+
+services:
+    -
+        class: App\PHPStan\Rules\SnakeCaseVariableRule
+        tags:
+            - phpstan.rules.rule
+    -
+        class: App\PHPStan\Rules\CamelCaseMethodRule
+        tags:
+            - phpstan.rules.rule

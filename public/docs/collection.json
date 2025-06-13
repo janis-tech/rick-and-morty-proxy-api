@@ -1,0 +1,22 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "http:\/\/localhost"
+        }
+    ],
+    "info": {
+        "name": "Rick and Morty Proxy API",
+        "_postman_id": "3132dbbe-e7d7-4387-9bb4-1842a1a04a0f",
+        "description": "A Laravel-based API that serves as a proxy for Rick and Morty show character data. This API returns JSON data and is designed to be accessible by various clients, including mobile applications.",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json",
+        "version": "1.0.0"
+    },
+    "item": [],
+    "auth": {
+        "type": "noauth"
+    }
+}

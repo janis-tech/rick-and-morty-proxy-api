@@ -1,0 +1,10 @@
+openapi: 3.0.3
+info:
+  title: 'Rick and Morty Proxy API'
+  description: 'A Laravel-based API that serves as a proxy for Rick and Morty show character data. This API returns JSON data and is designed to be accessible by various clients, including mobile applications.'
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost'
+tags: []
+paths: []
