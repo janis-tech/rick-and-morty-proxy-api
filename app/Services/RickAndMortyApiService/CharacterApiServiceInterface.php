@@ -3,6 +3,7 @@
 namespace App\Services\RickAndMortyApiService;
 
 use App\DTO\CharacterDTO;
+use App\DTO\CharacterResponseDTO;
 
 interface CharacterApiServiceInterface
 {
@@ -11,9 +12,8 @@ interface CharacterApiServiceInterface
      *
      * @param  int  $page  The page number to retrieve.
      * @param  array<mixed>|null  $filters  Optional filters for the character search.
-     * @return array<CharacterDTO>
      */
-    public function getAllCharacters(int $page, ?array $filters): array;
+    public function getAllCharacters(int $page, ?array $filters): CharacterResponseDTO;
 
     /**
      * Get a character by ID.

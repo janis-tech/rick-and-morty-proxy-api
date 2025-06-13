@@ -24,8 +24,23 @@ class CharacterIndexRequest extends FormRequest
         return [
             'name' => 'nullable|string|max:255',
             'status' => 'nullable|string|in:alive,dead,unknown',
-            'page' => 'nullable|integer|min:1'
+            'page' => 'nullable|integer|min:1',
         ];
+    }
+
+    /**
+     * Summary of filters
+     *
+     * @return array<string, mixed>
+     */
+    public function filters(): array
+    {
+        /**
+         * @var array<string, mixed> $filters
+         */
+        $filters = $this->only(['name', 'status']);
+
+        return $filters;
     }
 
     /**
@@ -45,10 +60,10 @@ class CharacterIndexRequest extends FormRequest
                 'example' => 'alive',
                 'enum' => ['alive', 'dead', 'unknown'],
             ],
-            'page'=> [
+            'page' => [
                 'description' => 'The page number to retrieve.',
                 'example' => 1,
-            ]
+            ],
         ];
     }
 }

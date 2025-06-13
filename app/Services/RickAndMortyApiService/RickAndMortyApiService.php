@@ -3,6 +3,8 @@
 namespace App\Services\RickAndMortyApiService;
 
 use App\DTO\CharacterDTO;
+use App\DTO\CharacterResponseDTO;
+use App\DTO\PaginationDTO;
 use Illuminate\Support\Facades\Http;
 
 class RickAndMortyApiService implements CharacterApiServiceInterface
@@ -14,11 +16,9 @@ class RickAndMortyApiService implements CharacterApiServiceInterface
      *
      * @param  int  $page  The page number to retrieve.
      * @param  array<string, mixed>|null  $filters  Optional filters for the character search.
-     * @return array<CharacterDTO>
      */
-    public function getAllCharacters(int $page, ?array $filters): array
+    public function getAllCharacters(int $page, ?array $filters): CharacterResponseDTO
     {
-
         if ($page > 1) {
             $filters['page'] = $page;
         }
@@ -26,6 +26,7 @@ class RickAndMortyApiService implements CharacterApiServiceInterface
         $response_data = $this->makeRequest($this->baseUrl, $filters);
 
         $characters = [];
+        $pagination = null;
 
         /** @var array<string, mixed> $response_data */
         if (isset($response_data['results']) && is_array($response_data['results'])) {
@@ -35,7 +36,13 @@ class RickAndMortyApiService implements CharacterApiServiceInterface
             }
         }
 
-        return $characters;
+        if (isset($response_data['info']) && is_array($response_data['info'])) {
+            /** @var array<string, mixed> $info */
+            $info = $response_data['info'];
+            $pagination = PaginationDTO::fromArray($info);
+        }
+
+        return new CharacterResponseDTO($characters, $pagination);
     }
 
     /**

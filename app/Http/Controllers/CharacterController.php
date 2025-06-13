@@ -21,11 +21,12 @@ class CharacterController extends Controller
      */
     public function index(CharacterIndexRequest $request): JsonResponse
     {
-        $characters = [];
-        $filters = $request->validated();
+        $character_response = null;
+        $filters = $request->filters();
+        $page = $request->integer('page', 1);
 
         try {
-            $characters = $this->characterApiService->getAllCharacters(15, $filters);
+            $character_response = $this->characterApiService->getAllCharacters($page, $filters);
         } catch (\Exception $e) {
             return response()->json(
                 [
@@ -35,6 +36,9 @@ class CharacterController extends Controller
                 500
             );
         }
+
+        $characters = $character_response->getCharacters();
+        $pagination = $character_response->getPagination();
 
         $character_data = array_map(function (CharacterDTO $character) {
             return $character->toArray();
@@ -46,13 +50,13 @@ class CharacterController extends Controller
                 'data' => $character_data,
                 'message' => 'Characters retrieved successfully.',
                 'pagination' => [
-                    'total' => count($characters),
-                    'count' => count($characters),
-                    'per_page' => 10,
-                    'current_page' => 1,
-                    'total_pages' => 1,
+                    'total' => $pagination ? $pagination->getCount() : 0,
+                    'pages' => $pagination ? $pagination->getPages() : 0,
+                    'next_page' => $pagination ? $pagination->getNextNum() : null,
+                    'prev_page' => $pagination ? $pagination->getPrevNum() : null,
+                    'current_page' => $page,
+                    'count' => count($character_data),
                 ],
-
             ],
             200
         );
