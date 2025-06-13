@@ -5,6 +5,7 @@ namespace App\Services\RickAndMortyApiService;
 use App\DTO\CharacterDTO;
 use App\DTO\CharacterResponseDTO;
 use App\DTO\PaginationDTO;
+use App\Exceptions\CharacterNotFoundException;
 use Illuminate\Support\Facades\Http;
 
 class RickAndMortyApiService implements CharacterApiServiceInterface
@@ -80,7 +81,10 @@ class RickAndMortyApiService implements CharacterApiServiceInterface
         $response = Http::get($url, $params);
 
         if ($response->failed()) {
-            throw new \Exception('Failed to fetch data from Rick and Morty API');
+            match ($response->getStatusCode()) {
+                404 => throw new CharacterNotFoundException('Character not found'),
+                default => throw new \Exception('Unexpected error occurred'),
+            };
         }
 
         /**

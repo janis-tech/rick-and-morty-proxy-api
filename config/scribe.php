@@ -43,6 +43,7 @@ return [
                 'GET /',
                 'POST /_ignition/execute-solution',
                 'GET /_ignition/health-check',
+                'GET /api/v1/{fallbackPlaceholder}',
             ],
         ],
     ],

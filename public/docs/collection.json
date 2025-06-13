@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Rick and Morty Proxy API",
-        "_postman_id": "5abab49c-0899-4655-bdab-693318d3668e",
+        "_postman_id": "44e27cea-71d1-49c6-b26c-440fc96bf64e",
         "description": "A Laravel-based API that serves as a proxy for Rick and Morty show character data. This API returns JSON data and is designed to be accessible by various clients, including mobile applications.",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json",
         "version": "1.0.0"
@@ -99,7 +99,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "architecto",
+                                    "value": "564",
                                     "description": "The ID of the character."
                                 }
                             ]
@@ -137,8 +137,8 @@
                                     "value": "*"
                                 }
                             ],
-                            "code": 404,
-                            "body": "{\"status\":\"error\",\"message\":\"Character not found\"}",
+                            "code": 200,
+                            "body": "{\"status\":\"success\",\"data\":{\"id\":564,\"name\":\"Talking Cat\",\"status\":\"Alive\",\"species\":\"Animal\",\"type\":\"\",\"gender\":\"Male\",\"origin\":{\"name\":\"unknown\",\"url\":\"\"},\"location\":{\"name\":\"Earth (Replacement Dimension)\",\"url\":\"https:\\\/\\\/rickandmortyapi.com\\\/api\\\/location\\\/20\"},\"image\":\"https:\\\/\\\/rickandmortyapi.com\\\/api\\\/character\\\/avatar\\\/564.jpeg\",\"episode\":[\"https:\\\/\\\/rickandmortyapi.com\\\/api\\\/episode\\\/35\"],\"url\":\"https:\\\/\\\/rickandmortyapi.com\\\/api\\\/character\\\/564\",\"created\":\"2020-05-07T11:33:37.456Z\"}}",
                             "name": ""
                         }
                     ]

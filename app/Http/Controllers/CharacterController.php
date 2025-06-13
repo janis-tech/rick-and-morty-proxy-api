@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DTO\CharacterDTO;
+use App\Exceptions\CharacterNotFoundException;
 use App\Http\Requests\CharacterIndexRequest;
 use App\Services\RickAndMortyApiService\CharacterApiServiceInterface;
 use Illuminate\Http\JsonResponse;
@@ -27,14 +28,23 @@ class CharacterController extends Controller
 
         try {
             $character_response = $this->characterApiService->getAllCharacters($page, $filters);
-        } catch (\Exception $e) {
+        } catch (CharacterNotFoundException $e) {
             return response()->json(
                 [
                     'status' => 'error',
-                    'message' => 'Failed to retrieve characters: '.$e->getMessage(),
+                    'message' => 'Characters were not found',
+                ],
+                status: 404
+            );
+        } catch (\Exception $exception) {
+            return response()->json(
+                [
+                    'status' => 'error',
+                    'message' => 'Failed to retrieve characters: '.$exception->getMessage(),
                 ],
                 500
             );
+
         }
 
         $characters = $character_response->getCharacters();
@@ -65,10 +75,10 @@ class CharacterController extends Controller
     /**
      * Display a specific character by ID.
      */
-    public function show(string $id): JsonResponse
+    public function show(int $id): JsonResponse
     {
         try {
-            $character = $this->characterApiService->getCharacterById((int) $id);
+            $character = $this->characterApiService->getCharacterById($id);
 
             if (! $character) {
                 return response()->json(
@@ -86,6 +96,14 @@ class CharacterController extends Controller
                     'data' => $character->toArray(),
                 ],
                 200
+            );
+        } catch (CharacterNotFoundException $e) {
+            return response()->json(
+                [
+                    'status' => 'error',
+                    'message' => 'Character was not found',
+                ],
+                status: 404
             );
         } catch (\Exception $e) {
             return response()->json(

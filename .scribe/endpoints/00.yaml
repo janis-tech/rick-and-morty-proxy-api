@@ -97,14 +97,14 @@ endpoints:
         name: id
         description: 'The ID of the character.'
         required: true
-        example: architecto
+        example: '564'
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: architecto
+      id: '564'
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -112,8 +112,8 @@ endpoints:
     fileParameters: []
     responses:
       -
-        status: 404
-        content: '{"status":"error","message":"Character not found"}'
+        status: 200
+        content: '{"status":"success","data":{"id":564,"name":"Talking Cat","status":"Alive","species":"Animal","type":"","gender":"Male","origin":{"name":"unknown","url":""},"location":{"name":"Earth (Replacement Dimension)","url":"https:\/\/rickandmortyapi.com\/api\/location\/20"},"image":"https:\/\/rickandmortyapi.com\/api\/character\/avatar\/564.jpeg","episode":["https:\/\/rickandmortyapi.com\/api\/episode\/35"],"url":"https:\/\/rickandmortyapi.com\/api\/character\/564","created":"2020-05-07T11:33:37.456Z"}}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
