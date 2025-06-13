@@ -6,5 +6,106 @@ info:
 servers:
   -
     url: 'http://localhost'
-tags: []
-paths: []
+tags:
+  -
+    name: Characters
+    description: ''
+paths:
+  /api/v1/characters:
+    get:
+      summary: 'Display a character listing.'
+      operationId: displayACharacterListing
+      description: ''
+      parameters:
+        -
+          in: query
+          name: name
+          description: 'The name of the character to search for. Must not be greater than 255 characters.'
+          example: 'Rick Sanchez'
+          required: false
+          schema:
+            type: string
+            description: 'The name of the character to search for. Must not be greater than 255 characters.'
+            example: 'Rick Sanchez'
+            nullable: true
+        -
+          in: query
+          name: status
+          description: 'The status of the character.'
+          example: alive
+          required: false
+          schema:
+            type: string
+            description: 'The status of the character.'
+            example: alive
+            nullable: true
+            enum:
+              - alive
+              - dead
+              - unknown
+        -
+          in: query
+          name: page
+          description: 'The page number to retrieve. Must be at least 1.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'The page number to retrieve. Must be at least 1.'
+            example: 1
+            nullable: true
+      responses:
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: error
+                  message: 'Failed to retrieve characters: Failed to fetch data from Rick and Morty API'
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: 'Failed to retrieve characters: Failed to fetch data from Rick and Morty API'
+      tags:
+        - Characters
+      security: []
+  '/api/v1/characters/{id}':
+    get:
+      summary: 'Display a specific character by ID.'
+      operationId: displayASpecificCharacterByID
+      description: ''
+      parameters: []
+      responses:
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: error
+                  message: 'Character not found'
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: 'Character not found'
+      tags:
+        - Characters
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the character.'
+        example: architecto
+        required: true
+        schema:
+          type: string

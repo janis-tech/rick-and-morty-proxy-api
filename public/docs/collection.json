@@ -10,12 +10,142 @@
     ],
     "info": {
         "name": "Rick and Morty Proxy API",
-        "_postman_id": "3132dbbe-e7d7-4387-9bb4-1842a1a04a0f",
+        "_postman_id": "a0a28809-1416-43a3-8cee-9e420ea26f98",
         "description": "A Laravel-based API that serves as a proxy for Rick and Morty show character data. This API returns JSON data and is designed to be accessible by various clients, including mobile applications.",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json",
         "version": "1.0.0"
     },
-    "item": [],
+    "item": [
+        {
+            "name": "Characters",
+            "description": "",
+            "item": [
+                {
+                    "name": "Display a character listing.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/characters",
+                            "query": [
+                                {
+                                    "key": "name",
+                                    "value": "Rick+Sanchez",
+                                    "description": "The name of the character to search for. Must not be greater than 255 characters.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "status",
+                                    "value": "alive",
+                                    "description": "The status of the character.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "page",
+                                    "value": "1",
+                                    "description": "The page number to retrieve. Must be at least 1.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/v1\/characters?name=Rick+Sanchez&status=alive&page=1"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 500,
+                            "body": "{\"status\":\"error\",\"message\":\"Failed to retrieve characters: Failed to fetch data from Rick and Morty API\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Display a specific character by ID.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/characters\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/characters\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "architecto",
+                                    "description": "The ID of the character."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 404,
+                            "body": "{\"status\":\"error\",\"message\":\"Character not found\"}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
     "auth": {
         "type": "noauth"
     }

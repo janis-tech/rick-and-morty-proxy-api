@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Services\RickAndMortyApiService\CharacterApiServiceInterface;
+use App\Services\RickAndMortyApiService\RickAndMortyApiService;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -11,7 +14,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind(
+            CharacterApiServiceInterface::class,
+            RickAndMortyApiService::class,
+
+        );
     }
 
     /**
@@ -19,6 +26,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Model::preventLazyLoading();
     }
 }
