@@ -49,7 +49,7 @@ class CamelCaseMethodRule implements Rule
         }
 
         // Check if method name follows camelCase format (first character lowercase, no underscores)
-        if (!preg_match('/^[a-z][a-zA-Z0-9]*$/', $method_name)) {
+        if (! preg_match('/^[a-z][a-zA-Z0-9]*$/', $method_name)) {
             $error_message = sprintf('Method %s should be in camelCase format', $method_name);
 
             return [
