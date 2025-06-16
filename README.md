@@ -5,17 +5,15 @@ A Laravel-based API that serves as a proxy for Rick and Morty show character dat
 ## Features
 
 The API provides the following functionality:
-- Browse all characters from the show with pagination
+- Browse all characters from the show with pagination (includes search by name and status)
 - Load detailed information for a specific character
-- Search for characters by name or status
 
 ## API Endpoints
 
 | Endpoint                    | Method | Description                                           |
 |-----------------------------|--------|-------------------------------------------------------|
-| `/api/v1/characters`           | GET    | Get a paginated list of all characters                |
+| `/api/v1/characters`           | GET    | Get a paginated list of all characters (supports filtering by name and status)  |
 | `/api/v1/characters/{id}`      | GET    | Get detailed information about a specific character   |
-| `/api/v1/characters/search`    | GET    | Search for characters by name or status               |
 
 ## Technology Stack
 
