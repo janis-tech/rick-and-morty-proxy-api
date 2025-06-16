@@ -13,13 +13,13 @@ The API provides the following functionality:
 
 | Endpoint                    | Method | Description                                           |
 |-----------------------------|--------|-------------------------------------------------------|
-| `/api/characters`           | GET    | Get a paginated list of all characters                |
-| `/api/characters/{id}`      | GET    | Get detailed information about a specific character   |
-| `/api/characters/search`    | GET    | Search for characters by name or status               |
+| `/api/v1/characters`           | GET    | Get a paginated list of all characters                |
+| `/api/v1/characters/{id}`      | GET    | Get detailed information about a specific character   |
+| `/api/v1/characters/search`    | GET    | Search for characters by name or status               |
 
 ## Technology Stack
 
-- PHP 8.x
+- PHP 8.4
 - Laravel Framework
 - Docker via Laravel Sail
 
@@ -27,7 +27,7 @@ The API provides the following functionality:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/rick-and-morty-proxy-api.git
+   git clone https://github.com/janis-tech/rick-and-morty-proxy-api.git
    cd rick-and-morty-proxy-api
    ```
 
@@ -46,6 +46,25 @@ The API provides the following functionality:
    ```bash
    ./vendor/bin/sail up -d
    ```
+
+## Make Commands
+
+This project includes a Makefile with helpful commands to simplify your workflow:
+
+| Command                 | Description                                           |
+|-------------------------|-------------------------------------------------------|
+| `make up`               | Start the Sail environment in detached mode           |
+| `make down`             | Stop the Sail environment                             |
+| `make ssh`              | SSH into the application container                    |
+| `make restart`          | Restart the containers (shorthand for down + up)      |
+| `make pint`             | Run Laravel Pint - opinionated PHP code style fixer   |
+| `make phpstan`          | Run PHPStan static analysis with 2GB memory limit     |
+| `make test-workflow`    | Run the GitHub Actions workflow locally using act     |
+| `make render-documentation` | Generate API documentation with Scribe            |
+| `make test`             | Run tests with parallel execution and 80% coverage minimum |
+| `make help`             | Display all available make commands                   |
+
+Using these commands helps standardize development workflows and simplifies common tasks.
 
 ## API Documentation
 
