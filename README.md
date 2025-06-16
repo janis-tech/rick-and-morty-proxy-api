@@ -2,6 +2,10 @@
 
 A Laravel-based API that serves as a proxy for Rick and Morty show character data. This API returns JSON data and is designed to be accessible by various clients, including mobile applications.
 
+## Demo
+
+A live demo of the project is available at: [https://rickandmorty.janis-tech.dev/](https://rickandmorty.janis-tech.dev/)
+
 ## Features
 
 The API provides the following functionality:
